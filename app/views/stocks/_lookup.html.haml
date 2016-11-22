@@ -1,0 +1,24 @@
+#stock-lookup
+  %h3
+    Search for Stocks
+    = form_tag search_stocks_path, remote: true, method: :get, id: 'stock-lookup-form' do
+      .form-group.row.no-padding.text-center.col-md-12
+        .col-md-10
+          = text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: 'form-control search-box input-lg'
+        .col-md-2
+          = button_tag(type: :submit, class: "btn btn-lg btn-success") do
+            %i.fa.fa-search
+              Look up a stock
+    = render 'common/spinner'    
+    - if @stock
+      #stock-lookup-results.well.results-block
+        %strong
+          Symbol:
+        = @stock.ticker
+        %strong
+          Name:
+        = @stock.name
+        %strong
+          Price:
+        = @stock.price
+    #stock-lookup-errors
