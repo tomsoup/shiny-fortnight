@@ -1,0 +1,19 @@
+.navbar.navbar-default.navbar-static-top
+  .container
+    = link_to "StockOverwatch", root_path, class: 'navbar-brand'
+    - if current_user
+      %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+      .navbar-collapse.collapse.navbar-responsive-collapse
+        %ul.nav.navbar-nav.col-md-6
+          %li= link_to "My List", "my_portolio_path"
+          %li= link_to "Profile", edit_registration_path(current_user)
+        %ul.nav.navbar-right.col-md-4
+          %li.col-md-8.user-name.text-right
+            %i.fa.fa-user
+              = current_user.full_name.present? ? current_user.full_name : current_user.email
+          %li.col-md-4.logout
+            = link_to("logout", destroy_user_session_path, class: "btn btn-xs btn-danger", method: :delete)
