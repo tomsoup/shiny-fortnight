@@ -1,5 +1,5 @@
 #stock-lookup
-  %h3
+  %h4
     Search for Stocks
     = form_tag search_stocks_path, remote: true, method: :get, id: 'stock-lookup-form' do
       .form-group.row.no-padding.text-center.col-md-12
@@ -9,7 +9,7 @@
           = button_tag(type: :submit, class: "btn btn-lg btn-success") do
             %i.fa.fa-search
               Look up a stock
-    = render 'common/spinner'    
+    = render 'common/spinner'
     - if @stock
       #stock-lookup-results.well.results-block
         %strong
@@ -21,4 +21,15 @@
         %strong
           Price:
         = @stock.price
+        - if current_user.can_add_stock?(@stock.ticker)
+          -# if stock id is found, then use it, if not empty string
+          = link_to "Add to my watch", user_stocks_path(user: current_user, stock_ticker: @stock.ticker, stock_id: @stock.id ? @stock.id : ''), class: 'btn btn-xs btn-success', method: :post
+        - else
+          %span.label.label-default
+            Stock cannot be added to watchlist because you already have
+            - if !current_user.under_stock_limit?
+              10 stocks
+            - else
+              this stock
+
     #stock-lookup-errors

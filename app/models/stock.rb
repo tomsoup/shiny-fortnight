@@ -1,5 +1,9 @@
 class Stock < ActiveRecord::Base
   #class level methods are defined here
+  has_many :user_stocks
+  has_many :users, through: :user_stocks
+
+
   #We are adding the self. prior to the method name, because these methods are not tied to any objects or object lifecycle, we need to be able to use them without having any instances of a stock.
 
   #search in db instead of web
