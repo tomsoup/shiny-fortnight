@@ -1,1 +1,28 @@
-%h1 Friends List 
+= render 'friends/lookup'
+
+- if @friendships.size > 0
+  %table.table.table-striped
+    %thead
+      %tr
+        %th.page-header{:colspan => "3"}
+          %h2 My Friends
+      %tr
+        %th Name
+        %th Email
+        %th Actions
+    %tbody
+      - @friendships.each do |friend|
+        %tr
+          %td= friend.full_name
+          %td= friend.email
+          %td
+            = link_to "View Profile", user_path(friend), class: "btn btn-primary btn-xs"
+            = link_to 'Remove Friend',                  |
+              friendship_path(friend),                  |
+              :method => :delete,                       |
+              :data => { :confirm => 'Are you sure?' }, |
+              :class => 'btn btn-xs btn-danger'         |
+
+- else
+  .row.col-lg-12
+    %p.lead Oh no! You don't have any friends yet. Go out and get some!

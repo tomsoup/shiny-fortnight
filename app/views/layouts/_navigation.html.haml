@@ -9,8 +9,9 @@
 
       .navbar-collapse.collapse.navbar-responsive-collapse
         %ul.nav.navbar-nav.col-md-6
-          %li= link_to "My List", "my_portolio_path"
+          %li= link_to "My List", my_portfolio_path
           %li= link_to "Profile", edit_registration_path(current_user)
+          %li= link_to "Friends", friends_path
         %ul.nav.navbar-right.col-md-4
           %li.col-md-8.user-name.text-right
             %i.fa.fa-user
