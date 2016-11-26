@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
 
   def self.matches(field_name, param)
     # % means wild card
-    # % allow not exact match e.g john and joh
+    # % allow blur match e.g john and joh
     where("lower(#{field_name}) like ?", "%#{param}%")
   end
 end

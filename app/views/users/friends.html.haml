@@ -17,11 +17,12 @@
           %td= friend.email
           %td
             = link_to "View Profile", user_path(friend), class: "btn btn-primary btn-xs"
-            = link_to 'Remove Friend',                  |
-              friendship_path(friend),                  |
-              :method => :delete,                       |
-              :data => { :confirm => 'Are you sure?' }, |
-              :class => 'btn btn-xs btn-danger'         |
+            -# we are removing the associations between fd, not the fd itself
+            = link_to 'Remove Friend',
+              friendship_path(friend),
+              :method => :delete,
+              :data => { :confirm => 'Are you sure?' },
+              :class => 'btn btn-xs btn-danger'         
 
 - else
   .row.col-lg-12
