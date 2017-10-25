@@ -36,7 +36,6 @@
       / /row
       %footer
         %p © tomSoup
-        %span
-        = Date.today.year
-        .
+        = succeed "." do
+          %span#year= Date.today.year
     / /container
